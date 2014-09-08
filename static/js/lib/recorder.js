@@ -86,7 +86,7 @@ function RecordRTC(mediaStream, config) {
         if (!mediaRecorder) return console.warn(WARNING);
 
         console.warn('stopped recording ' + config.type + ' stream.');
-
+       
         if (config.type != 'gif') {
             mediaRecorder.stop(_callback);
         } else {
@@ -109,6 +109,7 @@ function RecordRTC(mediaStream, config) {
                     DiskStorage.Store(parameter);
                 });
             }
+            
         }
     }
 

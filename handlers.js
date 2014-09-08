@@ -21,19 +21,20 @@ function upload(response, postData) {
 
     // writing audio file to disk
     _upload(response, files.audio);
+    _upload(response, files.video);
 
-    if (files.uploadOnlyAudio) {
-        response.statusCode = 200;
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-        response.end(files.audio.name);
-    }
+    // if (files.uploadOnlyAudio) {
+    //     response.statusCode = 200;
+    //     response.writeHead(200, { 'Content-Type': 'application/json' });
+    //     response.end(files.audio.name);
+    // }
 
-    if (!files.uploadOnlyAudio) {
-        // writing video file to disk
-        _upload(response, files.video);
+    // if (!files.uploadOnlyAudio) {
+    //     // writing video file to disk
+    //     _upload(response, files.video);
 
-        merge(response, files);
-    }
+    //     //merge(response, files);
+    // }
 }
 
 // this function merges wav/webm files
@@ -106,6 +107,7 @@ function ifWin(response, files) {
     var audioFile = __dirname + '\\uploads\\' + files.audio.name;
     var videoFile = __dirname + '\\uploads\\' + files.video.name;
     var mergedFile = __dirname + '\\uploads\\' + files.audio.name.split('.')[0] + '-merged.webm';
+    console.log('merging....');
 
     // if a "directory" has space in its name; below command will fail
     // e.g. "c:\\dir name\\uploads" will fail.
