@@ -5,22 +5,61 @@
 		<title>Camera360</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="author" content="ted123">
+		<script src='/js/lib/jquery.js'></script> 
 		<script src="/js/lib/recorder.js"> </script>
 		<script src='/js/lib/resemble.js'></script>   
+		<style>
+			table {
+			    border-collapse: collapse;
+			}
+
+			table, td, th {
+			    border: 1px solid black;
+			}
+		</style>
 	</head>
 	<body>
-		<!--- alarm music -->
-		<div id='container'>
-			<audio id="suspenseMusic" controls>
-				<source src="/intruderalert.mp3" type="audio/mpeg" preload="auto">
-			</audio>
-		</div>
-		<!-- video display -->
-		<div>
-			 <canvas id='c1' style='-webkit-filter: grayscale(100%);'></canvas>
-				<video id='localVideo' autoplay></video> 
-			 <canvas id='c2' style='-webkit-filter: grayscale(100%);'></canvas>
-		</div>
+		
+		<table>
+			<tr> 
+				<td colspan="3">
+					<h1> CAMERA360 BETA </h1> 
+				</td>
+			</tr>
+			<tr>
+				<td rowspan="3">
+					<video id='localVideo' autoplay></video>
+				</td>
+				<td>
+					<canvas id='c1' style='-webkit-filter: grayscale(100%);'></canvas>
+				</td>
+				<td>
+					<canvas id='c2' style='-webkit-filter: grayscale(100%);'></canvas>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h2>(#<span id="vNum"></span>)RECENT IMAGES:( error: <span id="genError"></span> )</h2>
+					<button onclick="navigateImages( 'prev' );">Prev</button>
+					<button onclick="navigateImages( 'next' );">Next</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<canvas id='z1' ></canvas>
+				</td>
+				<td>
+					<canvas id='z2' ></canvas>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<audio id="suspenseMusic" controls>
+						<source src="/intruderalert.mp3" type="audio/mpeg" preload="auto">
+					</audio>
+				</td>
+			</tr>
+		</table>			 
 
 		<footer style="width:100%;position: fixed; right: 0; text-align: center;color:red;">
 			<a>Experiment Only</a>

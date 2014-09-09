@@ -109,7 +109,6 @@ URL: https://github.com/Huddle/Resemble.js
 
 		function loadImageData( fileData, callback ){
 			var fileReader;
-			console.log(fileData);
 			var hiddenImage = new Image();
 						hiddenImage.setAttribute("crossOrigin", "crossOrigin");
 
