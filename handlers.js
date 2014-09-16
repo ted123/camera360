@@ -14,6 +14,13 @@ function home(response) {
     response.end(fs.readFileSync('./static/index.html'));
 }
 
+function beta(response) {
+    response.writeHead(200, {
+        'Content-Type': 'text/html'
+    });
+    response.end(fs.readFileSync('./static/beta.html'));
+}
+
 // this function uploads files
 
 function upload(response, postData) {
@@ -167,5 +174,6 @@ function ifMac(response, files) {
 }
 
 exports.home = home;
+exports.beta = beta;
 exports.upload = upload;
 exports.serveStatic = serveStatic;

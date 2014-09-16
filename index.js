@@ -9,6 +9,7 @@ var server = require('./server'),
 
 handle["/"] = handlers.home;
 handle["/home"] = handlers.home;
+handle["/beta"] = handlers.beta;
 handle["/upload"] = handlers.upload;
 handle._static = handlers.serveStatic;
 

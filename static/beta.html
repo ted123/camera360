@@ -28,13 +28,13 @@
 			</tr>
 			<tr>
 				<td rowspan="3">
-					<video id='localVideo' autoplay></video>
+					<video id='webcam' autoplay></video>
 				</td>
 				<td>
-					<canvas id='c1' style='-webkit-filter: grayscale(100%);'></canvas>
+					<canvas id='canvas-source'></canvas>
 				</td>
 				<td>
-					<canvas id='c2' style='-webkit-filter: grayscale(100%);'></canvas>
+					<canvas id='canvas-blended'></canvas>
 				</td>
 			</tr>
 			<tr>
@@ -66,7 +66,6 @@
 		</footer>
 		
 		<!-- algorithm scripts -->
-		<script src='/js/lib/motiondetector.js'></script>
 		<script src='/js/lib/xylophone.js'></script>   
 		<script src='/js/lib/record&save.js'></script>   
 	</body>

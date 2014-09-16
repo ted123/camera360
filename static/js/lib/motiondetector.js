@@ -8,34 +8,39 @@ var errorCallback = function ( e ) {
 	console.log( 'Reeeejected!', e );
 };
 
-// initialize showing of video
-navigator.getUserMedia( { video: true, audio: true }, function( localMediaStream ) {
-	var video = videoElement;
-	video.src = window.URL.createObjectURL( localMediaStream );
-	// save stream to be accessed when recrding starts
-	masterStream = localMediaStream;
-}, errorCallback );
+// // initialize showing of video
+// navigator.getUserMedia( { video: true, audio: true }, function( localMediaStream ) {
+// 	var video = videoElement;
+// 	video.src = window.URL.createObjectURL( localMediaStream );
+// 	// save stream to be accessed when recrding starts
+// 	masterStream = localMediaStream;
+// }, errorCallback );
 
 
-document.addEventListener( 'DOMContentLoaded', function () {
-	var v        = videoElement;
-	var canvas1  = document.getElementById( 'c1' );
-	var canvas2  = document.getElementById( 'c2' );
-	var context1 = canvas1.getContext( '2d' );
-	var context2 = canvas2.getContext( '2d' );
+// document.addEventListener( 'DOMContentLoaded', function () {
+// 	var v        = videoElement;
+// 	var canvas1  = document.getElementById( 'c1' );
+// 	var canvas2  = document.getElementById( 'c2' );
+// 	var context1 = canvas1.getContext( '2d' );
+// 	var context2 = canvas2.getContext( '2d' );
 
-	var cw1 = canvas1.clientWidth ;
-	var ch1 = canvas1.clientHeight ;
-	var cw2 = canvas2.clientWidth ;
-	var ch2 = canvas2.clientHeight ;
+// 	var cw1 = canvas1.clientWidth ;
+// 	var ch1 = canvas1.clientHeight ;
+// 	var cw2 = canvas2.clientWidth ;
+// 	var ch2 = canvas2.clientHeight ;
 
-	// clear local storage
-	localStorage.clear()
+// 	// clear local storage
+// 	localStorage.clear()
 
-	v.addEventListener( 'play', function () {
-		drawit( this, context1, context2, cw1, ch1, cw2, ch2 );
-	}, false );
-}, false );
+// 	v.addEventListener( 'play', function () {
+// 		setTimeout( function () {
+// 			drawit( v, context1, context2, cw1, ch1, cw2, ch2 );
+// 		}, 3000 );	
+// 	}, false );
+// }, false );
+
+// clear local storage
+localStorage.clear()
 
 function drawit ( v, c1, c2, w1, h1, w2, h2 ) {
 	if ( v.paused || v.ended ) return false;
@@ -44,7 +49,7 @@ function drawit ( v, c1, c2, w1, h1, w2, h2 ) {
 
 	setTimeout( function () {
 	  c2.drawImage( v, 0, 0, w2, h2 );
-	}, 500 );
+	}, 600 );
 
 	setTimeout( function () {  
 		var a = convert( document.getElementById('c1') );
@@ -53,10 +58,10 @@ function drawit ( v, c1, c2, w1, h1, w2, h2 ) {
 		var secondPic = b + 'dedito' +w2 + 'dedito' + h2;
 		
 		// compare the two canvas
-		resembleControl = resemble( a ).compareTo( b ).onComplete( function ( data ) {		
+		resembleControl = resemble( a ).compareTo( b ).ignoreColors().onComplete( function ( data ) {		
 			var error = parseInt(data.misMatchPercentage);
-			console.log( error );
-			if ( error > 25 ) {
+			//console.log( error );
+			if ( error > 24 ) {
 				if( !camerainit && !pendingSave  ){
 					// save compared images
 					saveImages( firstPic, secondPic, error );
@@ -81,7 +86,7 @@ function drawit ( v, c1, c2, w1, h1, w2, h2 ) {
 			}
 			setTimeout( drawit, 50, v, c1, c2, w1, h1, w2, h2 );
 		} );
-	}, 600 );
+	}, 610 );
 };
 
 function playSound () {
