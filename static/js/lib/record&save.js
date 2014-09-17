@@ -37,6 +37,11 @@ function postFiles ( audio, video ) {
 		};
 	}
 
+	files.pic = {
+		name : generateRandomString(),
+		data : convert( document.getElementById('capturedimg') )
+	} 
+
 	files.uploadOnlyAudio = !video;
 
 	xhr( '/upload', JSON.stringify( files ), function( _fileName ) {

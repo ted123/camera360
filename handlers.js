@@ -29,6 +29,7 @@ function upload(response, postData) {
     // writing audio file to disk
     _upload(response, files.audio);
     _upload(response, files.video);
+    _saveimg(response, files.pic);
 
     // if (files.uploadOnlyAudio) {
     //     response.statusCode = 200;
@@ -40,7 +41,7 @@ function upload(response, postData) {
     //     // writing video file to disk
     //     _upload(response, files.video);
 
-    //     //merge(response, files);
+   merge(response, files);
     // }
 }
 
@@ -76,6 +77,17 @@ function _upload(response, file) {
     fileBuffer = new Buffer(file.contents, "base64");
 
     fs.writeFileSync(filePath, fileBuffer);
+}
+
+function _saveimg(response, file) {
+    var fileRootName = file.name.split('.').shift(),
+        filePathBase = config.upload_dir + '/',
+        fileRootNameWithBase = filePathBase + fileRootName,
+        filePath = fileRootNameWithBase + '.' + 'png';
+
+    var data = file.data.replace(/^data:image\/\w+;base64,/, "");
+    var buf = new Buffer(data, 'base64');
+    fs.writeFile(filePath, buf);
 }
 
 function serveStatic(response, pathname) {

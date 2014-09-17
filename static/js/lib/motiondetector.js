@@ -102,6 +102,7 @@ function playSound () {
 };
 
 function saveImages ( a, b, c ) {
+
 	try {
         localStorage.setItem( 'a'+masterNum, a);
         localStorage.setItem( 'b'+masterNum, b);
@@ -113,17 +114,15 @@ function saveImages ( a, b, c ) {
     }
 
     // view immediately
-    viewImages( masterNum-1 );
+    viewImages( masterNum-1 );	
 };
 
 function viewImages ( mNum ) {
 
 	viewNum = mNum || viewNum;
 	
-	var canvas1  = document.getElementById( 'z1' );
-	var canvas2  = document.getElementById( 'z2' );
-	var c1       = canvas1.getContext( '2d' );
-	var c2       = canvas2.getContext( '2d' );
+	var canvas1 = document.getElementById( 'capturedimg' );
+	var cc      = canvas1.getContext( '2d' );
 
 	try {
        var a = localStorage.getItem( 'a'+viewNum ).split( 'dedito' );
@@ -139,8 +138,8 @@ function viewImages ( mNum ) {
     var img2 = new Image;
 	img1.src = a[0];
 	img2.src = b[0];
-	c1.drawImage( img1, 0, 0, a[1], a[2] ); 
-	c2.drawImage( img2, 0, 0, b[1], b[2] ); 
+	cc.drawImage( img1, 0, 0, 300, 225 );
+	cc.drawImage( img2, 300, 0, 300, 225);
 
 	var genError       = document.getElementById("genError");
 	var vNum           = document.getElementById("vNum");
