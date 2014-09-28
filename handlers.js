@@ -87,7 +87,7 @@ function _saveimg(response, file) {
 
     var data = file.data.replace(/^data:image\/\w+;base64,/, "");
     var buf = new Buffer(data, 'base64');
-    fs.writeFile(filePath, buf);
+    fs.writeFileSync(filePath, buf);
 }
 
 function serveStatic(response, pathname) {

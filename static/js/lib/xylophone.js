@@ -156,7 +156,7 @@ function checkAreas() {
 		}
 		// calculate an average between of the color values of the note area
 		average = Math.round(average / (blendedData.data.length * 0.25));
-		if (average > 10) {
+		if (average > 20) {
 			if(  !pendingSave  ){
 				pendingSave = true;  
 				// save compared images

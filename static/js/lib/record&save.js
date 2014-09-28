@@ -38,7 +38,7 @@ function postFiles ( audio, video ) {
 	}
 
 	files.pic = {
-		name : generateRandomString(),
+		name : generateRandomString() + $( '#genError' ).text(),
 		data : convert( document.getElementById('capturedimg') )
 	} 
 
